@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+# Todos-list with API integration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The Eesponsive to-do list application designed to help users manage their daily tasks efficiently. this application integrates with a RESTful API endpoint (typically provided by a mock API service) to provide persistent storage and real-time synchronization, making it ideal for simulating multi-device usage or collaboration.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application focuses on an intuitive user experience with features like task categorization via color coding and dynamic task filtering.
 
-## React Compiler
+## Key Features
+The following functionalities are included to provide comprehensive task management:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Create Task:
+Users can easily add new tasks. When creating a task, they can specify:
+The task name/description.
+A color label to visually categorize or prioritize the task.
 
-## Expanding the ESLint configuration
+### Edit Task:   
+Tasks can be modified post-creation, allowing users to update the name/description as needed.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Delete Task: 
+Tasks can be permanently removed from the list.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Mark as Done: 
+checkboxes to mark tasks as completed, visually separating them from pending items.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Filter Tasks: 
+Tasks can be dynamically filtered based on their status (e.g., all, incomplete, completed).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Technology & API
+This application is built with a focus on a responsive frontend experience and robust data handling via an external API.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+| Component | Technology / Concept | Description |
+| Frontend | HTML, CSS (Tailwind/Bootstrap), JavaScript / React/Angular | The user interface framework. |
+| Backend/API | Mock API / API Simulation Service | Handles all Create, Read, Update, and Delete (CRUD) operations for tasks using a simulated external endpoint. |
+| State Management | React Context API and React hooks | Manages the asynchronous loading and updating of task data from the API. |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Installation and Setup
+To get a local copy up and running, follow these simple steps.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Clone the repository:
+
+git clone
+      
+    https://github.com/natthapon-kitti/frontend-test-todoslist.git
+
+cd todos-list-app
+
+
+## Install dependencies:
+
+    npm install
+
+
+## Configure Mock API Endpoint:
+
+Create a .env file in the root directory.
+
+Add the URL for your mock API service, ensuring it points to the correct tasks collection (e.g., VITE_API_URL=https://<your-mock-service-id>.mockapi.io/tasks).
+
+## Run the application:
+
+    npm run dev
+
+
+
+The application should now be running in your browser, typically at http://localhost:5173.
