@@ -30,8 +30,8 @@ Tasks can be dynamically filtered based on their status (e.g., all, incomplete, 
 This application is built with a focus on a responsive frontend experience and robust data handling via an external API.
 
 | Component | Technology / Concept | Description |
-| Frontend | HTML, CSS (Tailwind/Bootstrap), JavaScript / React/Angular | The user interface framework. |
-| Backend/API | Mock API / API Simulation Service | Handles all Create, Read, Update, and Delete (CRUD) operations for tasks using a simulated external endpoint. |
+| Frontend | HTML, CSS (Tailwind/Bootstrap), Typescript / React 
+| API | Mock API / API Simulation Service | Handles all Create, Read, Update, and Delete (CRUD) operations for tasks using a simulated external endpoint. |
 | State Management | React Context API and React hooks | Manages the asynchronous loading and updating of task data from the API. |
 
 ## Installation and Setup
