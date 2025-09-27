@@ -19,7 +19,7 @@ export const apiService = {
     },
 
     // create todo
-    createTodo: (text: string, done: boolean) => api.post("/todos", ({ text: text, done: done })),
+    createTodo: (text: string, done: boolean, color: string) => api.post("/todos", ({ text: text, done: done,color: color })),
 
     // update todo by id
     updateTodo: (id: number, data: { text: string, done: boolean }) => api.put(`/todos/${id}`, data),
