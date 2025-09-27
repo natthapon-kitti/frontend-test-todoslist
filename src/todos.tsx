@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useApi } from "./apiContext"
 import { FaTrashAlt } from "react-icons/fa"
-import { Button, Checkbox, Input, Form, Skeleton, ColorPicker } from "antd"
+import { Button, Checkbox, Input, Form, Skeleton, ColorPicker, Popconfirm, Radio } from "antd"
 import { BiPencil } from "react-icons/bi";
+import { FiFilter } from "react-icons/fi";
 
 
 type Todo = { id: number; text: string; done: boolean, color: string };
@@ -13,7 +14,7 @@ const Todos = () => {
   const [loading, setLoading] = useState(false)
   const [editingId, setEditingId] = useState<number | null>(null)
   const [form] = Form.useForm()
-
+  const [filterType, setFilterType] = useState('all')
 
   useEffect(() => {
     setLoading(true)
@@ -49,7 +50,6 @@ const Todos = () => {
 
     await updateTodo(id, data)
 
-
   }
 
   const handleDeleteTodo = async (id: number) => {
@@ -82,12 +82,51 @@ const Todos = () => {
     return undefined
   };
 
+  const filteredTodos = useMemo(() => {
+    if (filterType === 'all') return todos
+    if (filterType === 'completed') return todos.filter(todo => todo.done)
+    if (filterType === 'incomplete') return todos.filter(todo => !todo.done)
+    return todos
+  }, [todos, filterType])
+
+
+
 
   return (
     <div className="text-black flex flex-col items-start">
       <h2 className="font-semibold text-3xl">Todos List</h2>
       <br />
-      <h2 className=" text-2xl">Today</h2>
+
+      <div className="w-full md:w-[50%] flex justify-between ">
+        <h2 className=" text-2xl">Today</h2>
+
+        {/* filtering tasks */}
+        <Popconfirm
+          placement="bottomRight"
+          title=""
+          icon={null}
+          okButtonProps={{ style: { display: 'none' } }}
+          cancelButtonProps={{ style: { display: 'none' } }}
+          description={
+            <>
+              <Radio.Group
+                defaultValue="all"
+                className="flex flex-col space-y-2"
+                onChange={(e) => {
+                  console.log("filter changed", e.target.value)
+                  setFilterType(e.target.value)
+                }}
+              >
+                <Radio value="all">All</Radio>
+                <Radio value="completed">Completed</Radio>
+                <Radio value="incomplete">Incomplete</Radio>
+              </Radio.Group>
+            </>}
+
+        >
+          <Button type="primary" icon={<FiFilter size={14} />} className="" >filter</Button>
+        </Popconfirm>
+      </div>
       {
         loading
           ?
@@ -97,7 +136,7 @@ const Todos = () => {
           :
           <div className="w-full mt-2 ">
             {
-              todos.map((todo: { id: number, text: string, done: boolean, color: string }) => (
+              filteredTodos.map((todo: { id: number, text: string, done: boolean, color: string }) => (
                 <div key={todo.id} className="w-full md:w-[50%] relative pb-2 pt-2 ">
 
                   {/* bg */}
